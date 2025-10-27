@@ -8,3 +8,17 @@ final class AppState: ObservableObject {
     @Published var favorites: [Artist] = Artist.samples
     @Published var discoveryFilters = DiscoveryFilters()
 }
+
+#if DEBUG
+extension AppState {
+    static func preview(
+        selectedTab: RootView.Tab = .home,
+        showOnboarding: Bool = false
+    ) -> AppState {
+        let state = AppState()
+        state.selectedTab = selectedTab
+        state.showOnboarding = showOnboarding
+        return state
+    }
+}
+#endif

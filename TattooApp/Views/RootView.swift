@@ -56,9 +56,19 @@ struct RootView: View {
     }
 }
 
-struct RootView_Previews: PreviewProvider {
-    static var previews: some View {
-        RootView()
-            .environmentObject(AppState())
-    }
+#if DEBUG
+#Preview("Home") {
+    RootView()
+        .environmentObject(AppState.preview())
 }
+
+#Preview("Discover") {
+    RootView()
+        .environmentObject(AppState.preview(selectedTab: .discover))
+}
+
+#Preview("Onboarding") {
+    RootView()
+        .environmentObject(AppState.preview(showOnboarding: true))
+}
+#endif
